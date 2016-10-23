@@ -6,10 +6,10 @@
 </head>
 <body>
 
-  <?php foreach ($news as $article) : ?>
+  <?php foreach ($this->news as $article) : ?>
       <article>
         <h1><?php echo $article->title; ?></h1>
-        <div><?php echo $article->lead; ?></div>
+        <div><?php echo $article->content; ?></div>
       </article>
   <?php endforeach; ?>
 
