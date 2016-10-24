@@ -12,6 +12,7 @@
 
 <h2><?php echo $article->title; ?></h2>
 <p><?php echo $article->content; ?></p>
+<p><?php echo $article->author ?? 'без автора'; ?></p>
 
 <a href="/index.php">Назад</a>
 

@@ -7,6 +7,10 @@ ini_set('display_startup_errors', 1);
 
 require_once __DIR__ . '/autoload.php';
 
-$news = \App\Model\Article::findAll();
+$iter = new \App\Iter("One, Two ,Three, Four, Five");
 
-include __DIR__ . '/templates/index.php';
+
+while ($iter->valid()) {
+    echo $iter->current();
+    $iter->next();
+}

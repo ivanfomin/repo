@@ -23,6 +23,8 @@
     <a href="../control/showArt.php?id=<?php echo $article->id; ?>">
         <?php echo $article->title; ?></a>
         </p>
+        <sub><?php echo $article->author ?? 'без автора'; ?></sub>
+        <hr>
     <a href="../control/editArt.php?id=<?php echo $article->id; ?> ">Редактировать</a>
     <a href="../control/deleteArt.php?id=<?php echo $article->id; ?> ">Удалить</a>
     </div>
