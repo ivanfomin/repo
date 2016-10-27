@@ -13,6 +13,6 @@ if(isset($_POST['id']) && isset($_POST['title'])) {
 
     $article->save();
 }
-header('Location: /index.php');
+header('Location: /');
 
 

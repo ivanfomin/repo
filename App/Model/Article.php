@@ -20,12 +20,12 @@ class Article
 
     public $title;
     public $content;
-    protected $author;
+    public $author_id;
 
     public function __get($name)
     {
         if ($name == 'author') {
-            $name = Author::findById($this->author)->name;
+            $name = Author::findById($this->author_id)->name;
             if (false == $name) {
                 $name = 'Не известен.';
             }
@@ -35,7 +35,7 @@ class Article
 
     public function __isset($name)
     {
-        if($name == 'author') {
+        if($name == 'author' && !empty($this->author_id)) {
             return true;
         } else {
             return false;

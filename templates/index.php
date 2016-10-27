@@ -8,7 +8,8 @@
 
 <?php foreach ($news as $article) : ?>
     <article>
-        <h1><?php echo $article->title; ?></h1>
+        <h1><a href="../control/showArt.php?id=<?php echo $article->id; ?>">
+            <?php echo $article->title; ?></a></h1>
         <div><?php echo $article->content; ?></div>
         <p><?php echo $article->author ?? 'без автора'; ?></p>
     </article>

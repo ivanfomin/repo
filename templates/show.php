@@ -14,7 +14,7 @@
 <p><?php echo $article->content; ?></p>
 <p><?php echo $article->author ?? 'без автора'; ?></p>
 
-<a href="/index.php">Назад</a>
+<a href="/">Назад</a>
 
 </body>
 </html>

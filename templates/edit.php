@@ -14,7 +14,7 @@
             height: 200px;
         }
 
-        </style>
+    </style>
 </head>
 <body>
 
