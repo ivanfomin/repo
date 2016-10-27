@@ -36,6 +36,7 @@ class Admin extends Controller
 
     public function actionSave()
     {
+        //Надо бы какую-нибудь аутентификацию здесь запилить
         include __DIR__ . '/../../templates/add.php';
     }
 
