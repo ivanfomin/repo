@@ -32,6 +32,7 @@ abstract class Controller
     }
 
     protected function access() {
+        //Надо бы какую-нибудь аутентификацию здесь запилить
         return true;
     }
 }
