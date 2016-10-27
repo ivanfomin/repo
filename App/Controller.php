@@ -23,7 +23,7 @@ abstract class Controller
     {
         $actMethodName = 'action' . $action;
 
-        if($this->access()) {
+        if ($this->access()) {
             $this->$actMethodName();
         } else {
             echo "Доступ закрыт";
@@ -31,7 +31,8 @@ abstract class Controller
 
     }
 
-    protected function access() {
+    protected function access()
+    {
         //Надо бы какую-нибудь аутентификацию здесь запилить
         return true;
     }

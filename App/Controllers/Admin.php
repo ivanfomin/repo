@@ -26,7 +26,7 @@ class Admin extends Controller
     public function actionEdit()
     {
         $article = Article::findById($_GET['id']);
-        if($article == false) {
+        if ($article == false) {
             echo "Нет такой новотсти!";
         }
         $this->view->article = $article;
@@ -38,7 +38,6 @@ class Admin extends Controller
     {
         include __DIR__ . '/../../templates/add.php';
     }
-
 
 
 }

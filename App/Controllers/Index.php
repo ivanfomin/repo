@@ -7,7 +7,6 @@
  */
 
 
-
 namespace App\Controllers;
 
 use App\Controller;
@@ -29,7 +28,7 @@ class Index extends Controller
     {
 
         $article = Article::findById($_GET['id']);
-        if($article == false) {
+        if ($article == false) {
             echo "Нет такой новотсти!";
         }
         $this->view->article = $article;
