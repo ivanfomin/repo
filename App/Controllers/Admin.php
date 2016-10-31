@@ -45,17 +45,4 @@ class Admin extends Controller
     }
 
 
-    public function actionSave()
-    {
-        try {
-            include __DIR__ . '/../../templates/add.php';
-        } catch (MultiException $multiException) {
-            foreach ($multiException as $error) {
-                echo $error->getMessage;
-            }
-            die();
-        }
-    }
-
-
 }
