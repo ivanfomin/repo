@@ -9,6 +9,7 @@ abstract class Model
 
     public $id;
 
+
     public static function findAll()
     {
         $db = Db::getInstance();

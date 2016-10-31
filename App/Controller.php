@@ -19,6 +19,18 @@ abstract class Controller
         $this->view = new View();
     }
 
+    public function actionError($err)
+    {
+        $this->view->error = $err;
+        $this->view->displayOne(__DIR__ . '/../templates/error.php');
+    }
+
+    public function actionError404($err)
+    {
+        $this->view->error = $err;
+        $this->view->displayOne(__DIR__ . '/../templates/error404.php');
+    }
+
     public function action($action)
     {
         $actMethodName = 'action' . $action;

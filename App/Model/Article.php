@@ -3,6 +3,7 @@
 namespace App\Model;
 
 use App\Model;
+use App\MultiException;
 
 /**
  * Class Article
@@ -22,6 +23,29 @@ class Article
     public $content;
     public $author_id;
 
+    public function fill(array $data)
+    {
+
+        $errors = new MultiException();
+
+        if (empty($data['title'])) {
+            $errors->add(new \Exception('Заголовок не может быть пустым!'));
+        }
+
+        if (empty($data['content'])) {
+            $errors->add(new \Exception('Нет содержания статьи!'));
+        }
+
+
+        if (count($errors) > 0) {
+            throw $errors;
+        }
+
+        $this->title = $data['title'];
+        $this->content = $data['content'];
+
+    }
+
     public function __get($name)
     {
         if ($name == 'author') {
@@ -35,7 +59,7 @@ class Article
 
     public function __isset($name)
     {
-        if($name == 'author' && !empty($this->author_id)) {
+        if ($name == 'author' && !empty($this->author_id)) {
             return true;
         } else {
             return false;

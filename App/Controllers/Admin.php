@@ -10,15 +10,23 @@ namespace App\Controllers;
 
 
 use App\Controller;
+use App\DbException;
 use App\Model\Article;
+use App\MultiException;
+use App\NotFoundException;
 use App\View;
 
 class Admin extends Controller
 {
     public function actionDefault()
     {
-        $news = Article::findAll();
-
+        try {
+            $news = Article::findAll();
+        } catch (\PDOException $exception) {
+            $dbException = new DbException();
+            $dbException->setErrorMess($exception->getMessage());
+            throw $dbException;
+        }
         $this->view->news = $news;
         $this->view->display(__DIR__ . '/../../templates/admin.php');
     }
@@ -27,16 +35,26 @@ class Admin extends Controller
     {
         $article = Article::findById($_GET['id']);
         if ($article == false) {
-            echo "Нет такой новотсти!";
+            $nfException = new NotFoundException();
+            $nfException->setMess("Нет такой записи!!!");
+            throw $nfException;
         }
         $this->view->article = $article;
         $this->view->displayOne(__DIR__ . '/../../templates/editArt.php');
 
     }
 
+
     public function actionSave()
     {
-        include __DIR__ . '/../../templates/add.php';
+        try {
+            include __DIR__ . '/../../templates/add.php';
+        } catch (MultiException $multiException) {
+            foreach ($multiException as $error) {
+                echo $error->getMessage;
+            }
+            die();
+        }
     }
 
 

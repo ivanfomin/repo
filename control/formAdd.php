@@ -8,6 +8,7 @@ if (isset($_POST['title']) && isset($_POST['content'])) {
     $content = $_POST['content'];
 
     $article = new \App\Model\Article();
+
     $article->title = $title;
     $article->content = $content;
 

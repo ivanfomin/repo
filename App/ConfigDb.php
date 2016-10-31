@@ -9,13 +9,11 @@
 namespace App;
 
 
-class Config
+class ConfigDb
 {
     protected static $config;
     protected $path = __DIR__ . '/../conf.ini';
     protected $data = [];
-    protected $dbh;
-
 
     protected function __construct()
     {
@@ -24,11 +22,19 @@ class Config
         $host = $this->data['db']['host'];
         $dbname = $this->data['db']['dbname'];
         $dsn = $driver . ':host=' . $host . ';dbname=' . $dbname;
-        $this->dbh = new \PDO($dsn, 'root', '321', [
-            \PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8',
-        ]);
-        $this->dbh->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
-        $this->dbh->setAttribute(\PDO::ATTR_DEFAULT_FETCH_MODE, \PDO::FETCH_OBJ);
+
+        try {
+            $this->dbh = new \PDO($dsn, 'root', '321', [
+                \PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8',
+            ]);
+            $this->dbh->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
+            $this->dbh->setAttribute(\PDO::ATTR_DEFAULT_FETCH_MODE, \PDO::FETCH_OBJ);
+        } catch (\PDOException $exception) {
+            $dbException = new DbException();
+            $dbException->setErrorMess($exception->getMessage());
+            $dbException->setErrorSql($dsn);
+            throw $dbException;
+        }
 
     }
 

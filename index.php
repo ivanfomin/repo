@@ -25,11 +25,17 @@ $act = !empty($_GET['act']) ? $_GET['act'] : 'Default';
 
 $ctrlClassName = '\App\Controllers\\' . $ctrl;
 
-$actmethod = 'action' . $act;
-
 $ctrl = new $ctrlClassName;
-$ctrl->$actmethod();
 
+try {
+    $ctrl->action($act);
+} catch (\App\DbException $dbException) {
+    $actmethod = 'action' . 'Error';
+    $ctrl->$actmethod($dbException->getError());
+} catch (\App\NotFoundException $notFoundException) {
+    $actmethod = 'action' . 'Error404';
+    $ctrl->$actmethod($notFoundException->getMess());
+}
 
 
 

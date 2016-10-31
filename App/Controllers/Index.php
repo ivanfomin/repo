@@ -10,7 +10,10 @@
 namespace App\Controllers;
 
 use App\Controller;
+use App\DbException;
 use App\Model\Article;
+use App\MultiException;
+use App\NotFoundException;
 use App\View;
 
 
@@ -29,7 +32,9 @@ class Index extends Controller
 
         $article = Article::findById($_GET['id']);
         if ($article == false) {
-            echo "Нет такой новотсти!";
+            $nfException = new NotFoundException();
+            $nfException->setMess("Нет такой записи!!!");
+            throw $nfException;
         }
         $this->view->article = $article;
         $this->view->displayOne(__DIR__ . '/../../templates/one.php');
