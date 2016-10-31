@@ -41,7 +41,6 @@ class Admin extends Controller
         }
         $this->view->article = $article;
         $this->view->displayOne(__DIR__ . '/../../templates/editArt.php');
-
     }
 
 

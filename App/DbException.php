@@ -9,8 +9,6 @@
 namespace App;
 
 
-
-
 class DbException extends \Exception
 {
 
@@ -24,7 +22,7 @@ class DbException extends \Exception
 
     public function getError()
     {
-       return 'Error ' . $this->errorMess . '!';
+        return 'Error ' . $this->errorMess . '!';
     }
 
 
