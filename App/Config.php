@@ -24,9 +24,14 @@ class Config
         $host = $this->data['db']['host'];
         $dbname = $this->data['db']['dbname'];
         $dsn = $driver . ':host=' . $host . ';dbname=' . $dbname;
-        $this->dbh = new \PDO($dsn, 'root', '321', [
-            \PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8',
-        ]);
+        try {
+            $this->dbh = new \PDO($dsn, 'root', '321', [
+                \PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8',]);
+        } catch (\PDOException $exception) {
+            $dbException = new DbException();
+            $dbException->setErrorMess($exception->getMessage());
+            throw $dbException;
+        }
         $this->dbh->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
         $this->dbh->setAttribute(\PDO::ATTR_DEFAULT_FETCH_MODE, \PDO::FETCH_OBJ);
 
