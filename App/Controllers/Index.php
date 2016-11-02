@@ -21,14 +21,8 @@ class Index extends Controller
 {
     public function actionDefault()
     {
-        try {
-            $news = Article::findAll();
-        } catch (\PDOException $exception) {
-            $dbException = new DbException();
-            $dbException->setErrorMess($exception->getMessage());
-            throw $dbException;
-        }
 
+        $news = Article::findAll();
         $this->view->news = $news;
         $this->view->display(__DIR__ . '/../../templates/index.php');
     }
