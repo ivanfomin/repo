@@ -1,7 +1,2 @@
-# actions по отображению станиц с ошибками
-#вынес в базовый контроллер,так как оба потомка 
-#их используют.
-
-#DbException бросается в классе Config
-
+ twig -> /App/Controllers/Index.php actionDefault()
 
