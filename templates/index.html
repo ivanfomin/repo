@@ -11,7 +11,7 @@
 <div>
     {{article.content}}
 </div>
-<p>{{article.author}}</p>
+<sub>{{article.author | default('Без автора')}}</sub>
 <hr>
 {%endfor%}
 
