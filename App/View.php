@@ -11,6 +11,13 @@ namespace App;
 class View implements \Countable, \Iterator
 {
     use Magic;
+    protected $twig;
+
+    public function __construct()
+    {
+        $loader = new \Twig_Loader_Filesystem(__DIR__ . '/../templates');
+        $this->twig = new \Twig_Environment($loader);
+    }
 
     /**
      * @return int
@@ -80,5 +87,9 @@ class View implements \Countable, \Iterator
         echo $html;
     }
 
+    public function displayTwig($page)
+    {
+        echo $this->twig->render($page, $this->data);
+    }
 
 }

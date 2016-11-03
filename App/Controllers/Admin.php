@@ -27,15 +27,8 @@ class Admin extends Controller
 
     public function actionEdit()
     {
-        $article = Article::findById($_GET['id']);
-        if ($article == false) {
-            $nfException = new NotFoundException();
-            $nfException->setMess("Нет такой записи!!!");
-            throw $nfException;
-        }
-        $this->view->article = $article;
+        $this->act();
         $this->view->displayOne(__DIR__ . '/../../templates/editArt.php');
     }
-
 
 }

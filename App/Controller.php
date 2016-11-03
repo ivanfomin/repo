@@ -8,6 +8,8 @@
 
 namespace App;
 
+use App\Model\Article;
+
 
 abstract class Controller
 {
@@ -43,8 +45,20 @@ abstract class Controller
 
     }
 
+    public function act()
+    {
+        $article = Article::findById($_GET['id']);
+        if ($article == false) {
+            $nfException = new NotFoundException();
+            $nfException->setMess("Нет такой записи!!!");
+            throw $nfException;
+        }
+        $this->view->article = $article;
+    }
+
     protected function access()
     {
-        return mt_rand(0, 1);
+        //return mt_rand(0, 1);
+        return true;
     }
 }
