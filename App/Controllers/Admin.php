@@ -20,8 +20,7 @@ class Admin extends Controller
 {
     public function actionDefault()
     {
-        $news = Article::findAll();
-        $this->view->news = $news;
+        $this->view->news = Article::findAll();
         $this->view->display(__DIR__ . '/../../templates/admin.php');
     }
 

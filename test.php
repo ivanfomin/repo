@@ -5,6 +5,7 @@ ini_set('display_startup_errors', 1);
 
 require_once __DIR__ . '/autoload.php';
 
+
 $parts = explode('/', $_SERVER['REQUEST_URI']);
 
 $ctrlRequest = !empty($parts[1]) ? $parts[1] : 'Index';

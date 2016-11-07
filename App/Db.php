@@ -64,6 +64,26 @@ class Db
         }
     }
 
+    public function queryEach(string $sql, array $data = [], $class = null)
+    {
+        $sth = $this->dbh->prepare($sql);
+        $result = $sth->execute($data);
+        if (false === $result) {
+            var_dump($sth->errorInfo());
+            die;
+        }
+        if (null === $class) {
+            while ($row = $sth->fetch()) {
+                yield $row;
+            }
+        } else {
+            $sth->setFetchMode(\PDO::FETCH_CLASS, $class);
+            while ($row = $sth->fetch()) {
+                yield $row;
+            }
+        }
+    }
+
     public function lastInsertId()
     {
         return $this->dbh->lastInsertId();

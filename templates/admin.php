@@ -33,6 +33,34 @@
 
 <a href="/templates/add.php">Добавить новость</a>
 
+<hr>
+
+<?php
+
+
+$functions[] = function (\App\Model\Article $article) {
+    return '<b>' . $article->title . '</b>';
+};
+
+$functions[] = function (\App\Model\Article $article) {
+    return '<i>' . $article->id . '</i>';
+};
+
+$articles = \App\Model\Article::All();
+
+$admin = new \App\AdminDataTable($articles, $functions);
+
+$admin->fillCells();
+
+$admin->setRows(count($articles));
+
+$admin->setCols(count($functions));
+
+$arrRend = $admin->render(__DIR__ . '/dataTable.php');
+
+echo $arrRend;
+
+?>
 
 </body>
 </html>

@@ -21,8 +21,7 @@ class Index extends Controller
 {
     public function actionDefault()
     {
-        $news = Article::findAll();
-        $this->view->news = $news;
+        $this->view->news = Article::findAll();
         $this->view->displayTwig('index.html');
     }
 
