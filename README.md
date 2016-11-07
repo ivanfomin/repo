@@ -1,2 +1,1 @@
- #twig -> /App/Controllers/Index.php actionDefault()
-
+ заранее прошу прощение за "говнокод"

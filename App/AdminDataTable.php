@@ -14,7 +14,7 @@ class AdminDataTable
     protected $models = [];
     protected $functions = [];
     protected $cells = [];
-
+    protected $view;
     protected $rows;
     protected $cols;
 
@@ -22,6 +22,7 @@ class AdminDataTable
     {
         $this->models = $models;
         $this->functions = $functions;
+        $this->view = new View();
     }
 
     public function fillCells()
@@ -35,11 +36,12 @@ class AdminDataTable
 
     public function render($template)
     {
-        ob_start();
-        include $template;
-        $table = ob_get_contents();
-        ob_end_clean();
-        return $table;
+//        ob_start();
+//        include $template;
+//        $table = ob_get_contents();
+//        ob_end_clean();
+//        return $table;
+        $this->view->displayOne($template);
     }
 
     /**
