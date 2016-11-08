@@ -24,6 +24,18 @@ class Admin extends Controller
         $this->view->display(__DIR__ . '/../../templates/admin.php');
     }
 
+    public function actionTable()
+    {
+        $functions = include(__DIR__ . '/../../control/functions.php');
+
+        $articles = \App\Model\Article::All();
+
+        $admin = new \App\AdminDataTable($articles, $functions);
+
+        $admin->render(__DIR__ . '/../../templates/dataTable.php');
+
+    }
+
     public function actionEdit()
     {
         $this->act();

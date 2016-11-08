@@ -1,30 +1,22 @@
-<?php
-
-$strings = $this->getRows();
-$funcs = $this->getCols();
-
-?>
-
-
 <table>
-    <tr>
-        <td>Id</td>
-        <td>Name</td>
-    </tr>
+
     <?php
+    //проход по  массиву ячеек и вывод их в таблице
+    $arr = $this->cells; // если работать с магическим массивом напрямую выбрасывает "Indirect modification of overloaded property"
+    $strings = current($arr); //кол-во строк
+    $funcsCount = next($arr); // кол-во столбцов
+    $funcs = $funcsCount;
 
-    while ($strings >= 0) {
+    while ($strings > 0):
         echo '<tr>';
-        while ($funcs > 0) {
-            $element = current($this->cells);
-            echo '<td>' . $element . '</td>';
-            $element = next($this->cells);
+        while ($funcs > 0):
+            echo '<td>' . next($arr) . '</td>';
             $funcs--;
-        }
+        endwhile;
         echo '</tr>';
+        $funcs = $funcsCount;
         $strings--;
-        $funcs = $this->getCols();
-    }
+    endwhile;
     ?>
-
 </table>
+

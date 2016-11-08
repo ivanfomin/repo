@@ -15,69 +15,30 @@ class AdminDataTable
     protected $functions = [];
     protected $cells = [];
     protected $view;
-    protected $rows;
-    protected $cols;
 
-    public function __construct(array  $models,array $functions)
+    public function __construct(array  $models, array $functions)
     {
         $this->models = $models;
         $this->functions = $functions;
         $this->view = new View();
+        $this->fillCells();
     }
 
-    public function fillCells()
+    protected function fillCells()
     {
+        $this->cells[] = count($this->models); //кол-во строк
+        $this->cells[] = count($this->functions); //кол-во столбцов
         foreach ($this->models as $model) {
             foreach ($this->functions as $function) {
                 $this->cells[] = $function($model);
             }
+            $this->view->cells = $this->cells;
         }
     }
 
     public function render($template)
     {
-//        ob_start();
-//        include $template;
-//        $table = ob_get_contents();
-//        ob_end_clean();
-//        return $table;
         $this->view->displayOne($template);
     }
-
-    /**
-     * @return mixed
-     */
-    public function getRows()
-    {
-        return $this->rows;
-    }
-
-    /**
-     * @param mixed $rows
-     */
-    public function setRows($rows)
-    {
-        $this->rows = $rows;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getCols()
-    {
-        return $this->cols;
-    }
-
-    /**
-     * @param mixed $cols
-     */
-    public function setCols($cols)
-    {
-        $this->cols = $cols;
-    }
-
-
-
-
 
 }
