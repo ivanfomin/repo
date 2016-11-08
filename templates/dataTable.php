@@ -14,7 +14,7 @@
             $funcs--;
         endwhile;
         echo '</tr>';
-        $funcs = $funcsCount;
+        $funcs = $funcsCount; //возврат к кол-ву столбцов
         $strings--;
     endwhile;
     ?>
